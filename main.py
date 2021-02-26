@@ -6,7 +6,7 @@ from time import sleep
 checkTime = (7, 0)  # The time for the script to check for the VitalCheck email in hours, minutes (default is 7:00 AM)
 
 # Initializes next time to check email
-now = datetime.now() - timedelta(hours=5)  # Subtracting 5 hours to account for time zone (for east coast)
+now = datetime.now()# - timedelta(hours=5)  # Subtracting 5 hours to account for time zone (for east coast)
 nextCheck = datetime(now.year, now.month, now.day, hour=checkTime[0], minute=checkTime[1])
 if nextCheck <= datetime.now():
     nextCheck += timedelta(days=1)
@@ -36,7 +36,7 @@ print("------------------------------------------------------------------")
 print("Waiting for next email. Checking next on " + nextCheck.strftime("%m/%d/%Y") + " at " + nextCheck.strftime("%H:%M"))
 
 while 1:
-    now = datetime.now() - timedelta(hours=5)
+    now = datetime.now()# - timedelta(hours=5)
     if not completed and (now.hour, now.minute) == checkTime:
         print("Opening connection with " + email)
         imap, messages = OpenEmail(email, password)
