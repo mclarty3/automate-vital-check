@@ -2,13 +2,18 @@ from datetime import datetime, timedelta
 from check_email import OpenEmail, CheckEmails, ParseBody, CloseEmail
 from navigate_vitalcheck import GetWebPage
 from time import sleep
+import pytz
 
 checkTime = (7, 0)  # The time for the script to check for the VitalCheck email in hours, minutes (default is 7:00 AM)
 
-# Initializes next time to check email
-now = datetime.now()# - timedelta(hours=5)  # Subtracting 5 hours to account for time zone (for east coast)
-nextCheck = datetime(now.year, now.month, now.day, hour=checkTime[0], minute=checkTime[1])
-if nextCheck <= datetime.now():
+# Localize time from UTC to US/Eastern (now it doesn't matter WHERE the program is running!)
+utc = pytz.timezone('UTC')
+est = pytz.timezone('US/Eastern')
+now = utc.localize(datetime.utcnow()).astimezone(est)
+
+# Check if the current time is before/after the time to check for email. If after, set next check for following day
+nextCheck = est.localize(datetime(now.year, now.month, now.day, hour=checkTime[0], minute=checkTime[1]))
+if nextCheck <= now:
     nextCheck += timedelta(days=1)
 
 completed = False
