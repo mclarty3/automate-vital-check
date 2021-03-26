@@ -71,5 +71,3 @@ while 1:
         completed = True   # Prevent the script from completing the screening over and over again at the specified time
     elif completed and (now.hour, now.minute) != checkTime:
         completed = False  # Reset the script to check again the next day
-
-    sleep(5)
