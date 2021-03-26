@@ -16,8 +16,9 @@ def GetWebPage(link):
         button = driver.find_element_by_xpath("//button[@class='btn btn-lg btn-success btn-block language ENGLISH']")
         obscuringHelpMeBox = driver.find_elements_by_xpath("//div[@class='pull-right help-me-box col-md-4 col-sm-8 col-xs-12']")
 
+        # VitalCheck decided to make things a little more difficult to me and added a new HelpMe box when you open the page
+        # This hides the box to prevent the complete screening button from being obscured
         if len(obscuringHelpMeBox) != 0:
-            print("Hiding help me box")
             driver.execute_script("arguments[0].style.visibility='hidden'", obscuringHelpMeBox[0])
 
         button.click()  # Click the button to complete the screening
