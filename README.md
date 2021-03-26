@@ -29,8 +29,12 @@ completing my VitalCheck for me.
 # Running it on a server
 It turns out I know nearly absolutely nothing about actually deploying an application to "the cloud", and this proved to be perhaps the most 
 difficult part of the project. I decided on Google Cloud Platform, and am running the script on a VM instance. After wrestling with dependencies
-and inconsistencies for many hours, I finally got it to work (though it remains to be see if the server will restart and end the execution of my
-script--that would require quite the rework on the server side of things).
+and inconsistencies for many hours, I finally got it to work by downloading and using GNU Screen. This allows the program to stay running in one 
+"screen" even when the terminal is logged out of.
+
+First, type ```screen``` and start the program in the newly opened screen. Once it is running, press Ctrl+Shift+A, then D to detach from the screen.
+
+In order to return to the program to stop it and/or make changes, type ```screen -r```
 
 # Doing it yourself
 Good luck.
@@ -38,7 +42,7 @@ Good luck.
 No but really I probably spent the most time to save myself the least time of any project I've ever done. Something like this:
 
 
-![Imgur](https://i.imgur.com/heiO3JR.png)
+[![Image](https://i.imgur.com/heiO3JR.png)](https://xkcd.com/1319/)
 
 In order to recreate this, you will have to: 
 * create another email to forward VitalCheck emails to
