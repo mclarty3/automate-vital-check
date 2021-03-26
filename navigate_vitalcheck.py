@@ -14,10 +14,17 @@ def GetWebPage(link):
 
     try:
         button = driver.find_element_by_xpath("//button[@class='btn btn-lg btn-success btn-block language ENGLISH']")
+        obscuringHelpMeBox = driver.find_elements_by_xpath("//div[@class='pull-right help-me-box col-md-4 col-sm-8 col-xs-12']")
+
+        if len(obscuringHelpMeBox) != 0:
+            print("Hiding help me box")
+            driver.execute_script("arguments[0].style.visibility='hidden'", obscuringHelpMeBox[0])
+
         button.click()  # Click the button to complete the screening
     except Exception as e:
         print("Error:", str(e))
         return False
+
 
     driver.close()
     return True
