@@ -16,6 +16,10 @@ nextCheck = est.localize(datetime(now.year, now.month, now.day, hour=checkTime[0
 if nextCheck <= now:
     nextCheck += timedelta(days=1)
 
+# Daylight savings time
+if nextCheck.dst() != timedelta(0, 0):
+    nextCheck = nextCheck.replace(hour = nextCheck.hour - 1)
+
 completed = False
 
 while 1:
