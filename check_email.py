@@ -35,12 +35,14 @@ def CheckEmails(imap, messages, max_emails):
                 
                 if isinstance(subject, bytes):
                     # If email subject is bytes, decode to str
-                    subject = subject.decode(encoding)
+                    if encoding is not None:
+                        subject = subject.decode(encoding)
 
                 #subject = str(email.header.make_header(email.header.decode_header(msg['Subject'])))
                 
                 if isinstance(sender, bytes):
-                    sender = sender.decode(encoding)
+                    if encoding is not None:
+                        sender = sender.decode(encoding)
 
                 if msg.is_multipart():
                     for part in msg.walk():

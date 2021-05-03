@@ -16,9 +16,10 @@ nextCheck = est.localize(datetime(now.year, now.month, now.day, hour=checkTime[0
 if nextCheck <= now:
     nextCheck += timedelta(days=1)
 
+'''I'm not sure if I need this, but we'll see...'''
 # Daylight savings time
-if nextCheck.dst() != timedelta(0, 0):
-    nextCheck = nextCheck.replace(hour = nextCheck.hour - 1)
+#if nextCheck.dst() != timedelta(0, 0):
+#    nextCheck = nextCheck.replace(hour = nextCheck.hour - 1)
 
 completed = False
 
@@ -45,7 +46,7 @@ print("------------------------------------------------------------------")
 print("Waiting for next email. Checking next on " + nextCheck.strftime("%m/%d/%Y") + " at " + nextCheck.strftime("%H:%M"))
 
 while 1:
-    now = datetime.now()# - timedelta(hours=5)
+    now = est.localize(datetime.now())
     if not completed and (now.hour, now.minute) == checkTime:
         print("Opening connection with " + email)
         imap, messages = OpenEmail(email, password)
